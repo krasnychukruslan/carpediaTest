@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CarpediaTest</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="important_contacts">Important contacts</string>
+    <string name="job">job</string>
+    <string name="salary">salary</string>
+    <string name="close">close</string>
 </resources>

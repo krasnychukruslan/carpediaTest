@@ -3,16 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorBackground">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleMain"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/close"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"/>
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:text="@string/close"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <ProgressBar
-        android:id="@+id/progressBarMain"
+        android:id="@+id/progressBarEmployee"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
