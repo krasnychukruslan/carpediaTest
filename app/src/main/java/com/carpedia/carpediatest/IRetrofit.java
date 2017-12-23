@@ -8,10 +8,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
-/**
- * Created by rusci on 22-Dec-17.
- */
-
 public interface IRetrofit {
     @GET("jobs")
     Call<List<ModelMain>> getJobs();

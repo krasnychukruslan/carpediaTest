@@ -1,18 +1,19 @@
 package com.carpedia.carpediatest;
 
-import android.app.FragmentManager;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.carpedia.carpediatest.Model.ModelMain;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,12 +35,27 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         list = new ArrayList<>();
-        adapterMain= new AdapterMain(list, getApplicationContext());
+        adapterMain = new AdapterMain(list);
         recyclerView.setAdapter(adapterMain);
         retrofitGetJobs();
+        isPermissionGranted();
     }
 
-    private void retrofitGetJobs () {
+    private void isPermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.CALL_PHONE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("TAG", "Permission is granted");
+            } else {
+                Log.v("TAG", "Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+            }
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("TAG", "Permission is granted");
+        }
+    }
+
+    private void retrofitGetJobs() {
         progressBar.setVisibility(View.VISIBLE);
         Retrofit retrofit = RetrofitBaseClient.create();
         IRetrofit iRetrofit = retrofit.create(IRetrofit.class);

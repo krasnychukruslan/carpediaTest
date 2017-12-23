@@ -2,7 +2,6 @@ package com.carpedia.carpediatest;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,24 +25,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-/**
- * Created by rusci on 22-Dec-17.
- */
-
 public class AdapterMain extends RecyclerView.Adapter<AdapterMain.ViewHolder> {
 
     private List<ModelMain> list;
-    private Context context;
-    private View view;
 
-    AdapterMain(List<ModelMain> list, Context context){
+    AdapterMain(List<ModelMain> list) {
         this.list = list;
-        this.context = context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_job_type, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_job_type, parent, false);
         return new ViewHolder(view);
     }
 
@@ -100,13 +92,13 @@ public class AdapterMain extends RecyclerView.Adapter<AdapterMain.ViewHolder> {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
             recyclerView.setLayoutManager(linearLayoutManager);
             list = new ArrayList<>();
-            adapterEmployee = new AdapterEmployee(list, view.getContext());
+            adapterEmployee = new AdapterEmployee(list, view.getContext().getApplicationContext());
             recyclerView.setAdapter(adapterEmployee);
             retrofitGetEmployees();
             return view;
         }
 
-        private void retrofitGetEmployees () {
+        private void retrofitGetEmployees() {
             progressBar.setVisibility(View.VISIBLE);
             Retrofit retrofit = RetrofitBaseClient.create();
             IRetrofit iRetrofit = retrofit.create(IRetrofit.class);
@@ -128,6 +120,4 @@ public class AdapterMain extends RecyclerView.Adapter<AdapterMain.ViewHolder> {
             });
         }
     }
-
-
 }

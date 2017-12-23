@@ -3,10 +3,6 @@ package com.carpedia.carpediatest.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by rusci on 22-Dec-17.
- */
-
 public class ModelEmployee {
     @SerializedName("id")
     @Expose
@@ -23,6 +19,9 @@ public class ModelEmployee {
     @SerializedName("salary")
     @Expose
     private String salary;
+    @SerializedName("number")
+    @Expose
+    private String number;
 
     public long getId() {
         return id;
@@ -62,5 +61,13 @@ public class ModelEmployee {
 
     public void setSalary(String salary) {
         this.salary = salary;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }
